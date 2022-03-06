@@ -8,4 +8,6 @@
     php artisan vendor:publish --provider="LaravelMigrationGenerator\LaravelMigrationGeneratorProvider"
 
 
+git config --global user.email "cristian.visan@gmail.com"
+git config --global user.name "Cristian Visan"
 
