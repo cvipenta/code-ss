@@ -1,0 +1,41 @@
+*{outline:none;}
+body{color:#111;font-size:11px;font-family:Verdana, Arial, Helvetica, sans-serif;font-size-adjust:none;font-style:normal;font-variant:normal;font-weight:normal;padding:20px;color:#333333;}
+p{padding:0 0 1.1em 0;}
+p img.left{border:1px solid #356287;float:left;margin:5px 10px 0 0;padding:2px;}
+p img.center{border:1px solid #356287;margin:5px auto;padding:2px;}
+p img.right{border:1px solid #356287;float:right;margin:0 0 1em 1em;padding:2px;}
+p.borderBottom{display:block;border-bottom:1px solid #a3c1da;margin:0 0 1.5em 0;}
+.left{text-align:left;}
+.center{text-align:center;}
+.right{text-align:right;}
+h1{font-weight:normal;border-bottom:1px solid #70a0c7;color:#70a0c7;font-family:Arial, Helvetica, sans-serif;letter-spacing:2px;margin:0 5em;padding-bottom:15px;word-spacing:0.1em;}
+h2,h3,h4,h5,h6{font-weight:normal;color:#333;font-family:Arial, Helvetica, sans-serif}
+h1{font-size:2.5em;margin-bottom:0.3em;text-align:center;}
+h2{font-size:1.8em;font-weight:bold;text-align:left;margin-bottom:0.1em;margin-top:0;}
+h3{font-size:1.7em;margin:0.25em 0;}
+h4{font-size:1.4em;font-weight:bold;margin:0.25em 0;}
+h5,h6{font-size:0.7em;margin-bottom:1,154em;}
+li ul, li ol{margin:0 1.5em;}
+ul, ol{margin:0 1.5em 1.5em 1.5em;}
+dl{margin:0 0 1.5em 0;}
+dl dt{font-weight:bold;}
+dl dd{margin-left:1.5em;}
+a{color:#2359A3;text-decoration:underline;}
+a:hover{text-decoration:none;}
+table{margin-bottom:1.5em;border-collapse:collapse;}
+th{font-weight:bold;}
+tr, th, td{margin:0;padding:0 1.5em 0 1em;height:18px;}
+tfoot{font-style:italic;}
+caption{text-align:center;font-family:Georgia, serif;}
+abbr, acronym{border-bottom:1px dotted #000;}
+address{margin-top:1.5em;font-style:italic;}
+del{color:#000;}
+blockquote{padding-left:1.5em;letter-spacing:0.1em;margin:1.5em;border-left:3px solid #a3c1da;font-style:italic;}
+strong{font-weight:bold;}
+em, dfn{font-style:italic;}
+dfn{font-weight:bold;}
+pre, code{margin:1.5em 0;white-space:pre;}
+pre, code, tt{font:1em monospace;line-height:1.5;}
+tt{display:block;margin:1.5em 0;}
+hr{margin-bottom:1.5em;}
+
