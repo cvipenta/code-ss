@@ -2,6 +2,8 @@
 version: '3'
 services:
     laravel.test:
+        container_name: ${DOC_CONTAINER}web
+        hostname: ${DOC_HOSTNAME}web
         build:
             context: ./vendor/laravel/sail/runtimes/8.1
             dockerfile: Dockerfile
@@ -27,6 +29,8 @@ services:
             - meilisearch
             - selenium
     mysql:
+        container_name: ${DOC_CONTAINER}mysql
+        hostname: ${DOC_HOSTNAME}mysql
         image: 'mysql/mysql-server:8.0'
         ports:
             - '${APP_IP}:${FORWARD_DB_PORT:-3306}:3306'
@@ -46,6 +50,8 @@ services:
             retries: 3
             timeout: 5s
     redis:
+        container_name: ${DOC_CONTAINER}redis
+        hostname: ${DOC_HOSTNAME}redis
         image: 'redis:alpine'
         ports:
             - '${APP_IP}:${FORWARD_REDIS_PORT:-6379}:6379'
@@ -58,6 +64,8 @@ services:
             retries: 3
             timeout: 5s
     meilisearch:
+        container_name: ${DOC_CONTAINER}meilisearch
+        hostname: ${DOC_HOSTNAME}meilisearch
         image: 'getmeili/meilisearch:latest'
         ports:
             - '${APP_IP}:${FORWARD_MEILISEARCH_PORT:-7700}:7700'
@@ -70,6 +78,8 @@ services:
             retries: 3
             timeout: 5s
     mailhog:
+        container_name: ${DOC_CONTAINER}mailhog
+        hostname: ${DOC_HOSTNAME}mailhog
         image: 'mailhog/mailhog:latest'
         ports:
             - '${APP_IP}:${FORWARD_MAILHOG_PORT:-1025}:1025'
@@ -77,6 +87,8 @@ services:
         networks:
             - sail
     selenium:
+        container_name: ${DOC_CONTAINER}selenium
+        hostname: ${DOC_HOSTNAME}selenium
         image: 'selenium/standalone-chrome'
         volumes:
             - '/dev/shm:/dev/shm'
