@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -16,6 +15,12 @@ class AnalizeMedicale extends Controller
     public function categories()
     {
         $categories = DB::table('analize_medicale_all')->distinct()->pluck('am_category')->toArray();
+        $categories = array_map(static function ($category) {
+            return [
+                'title' => ucfirst($category) ?: 'Fara categorie',
+                'slug' => Str::slug($category) ?: 'na'
+            ];
+        }, $categories);
 
         return view('analize_medicale.categories', [
             'categories' => $categories
@@ -46,16 +51,10 @@ class AnalizeMedicale extends Controller
         ]);
     }
 
-    public function show($slug)
+    public function show(\App\Models\AnalizeMedicale $model)
     {
-        $record = DB::table('analize_medicale_all')->where('am_slug', $slug)->first();
-
-        if (!$record) {
-            throw new ModelNotFoundException();
-        }
-
         return view('analize_medicale.show', [
-            'record' => $record
+            'record' => $model
         ]);
     }
 }

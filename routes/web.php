@@ -33,5 +33,5 @@ Route::get('/contact.html', [Contact::class, 'index']);
 Route::get('/analize-medicale', [AnalizeMedicale::class, 'index']);
 Route::get('/analize-medicale.html', [AnalizeMedicale::class, 'categories']);
 Route::get('/analize-medicale/{category}.html', [AnalizeMedicale::class, 'category']);
-Route::get('/analize-medicale-explicate/{AnalizeMedicale::slug}.html', [AnalizeMedicale::class, 'show']);
+Route::get('/analize-medicale-explicate/{model:am_slug}.html', [AnalizeMedicale::class, 'show']);
 

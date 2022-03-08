@@ -10,4 +10,7 @@ class AnalizeMedicale extends Model
     use HasFactory;
 
     protected $table = 'analize_medicale_all';
+    protected $primaryKey = 'am_id';
+
+    protected $guarded = [];
 }
