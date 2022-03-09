@@ -5,7 +5,7 @@ services:
         container_name: ${DOC_CONTAINER}web
         hostname: ${DOC_HOSTNAME}web
         build:
-            context: ./vendor/laravel/sail/runtimes/8.1
+            context: ./docker/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
