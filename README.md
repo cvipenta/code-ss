@@ -1,5 +1,6 @@
 # Development tips
 **Inspiration**
+https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/
 https://github.com/JeffreyWay/Laravel-From-Scratch-Blog-Project
 
 **Generate migrations for existing db**
