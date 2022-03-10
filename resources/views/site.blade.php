@@ -10,7 +10,7 @@
     <meta name="keywords" content="$OVERALL_KEYWORDS"/>
     <meta name="description" content="$OVERALL_DESCRIPTION"/>
 
-    <meta name="Copyright" content="&copy; 2009 Start Sanatate"/>
+    <meta name="Copyright" content="&copy; 2009 {{ env('APP_NAME') }}"/>
     <meta name="reply-to" content="office@startsanatate.ro"/>
 
     <meta name="Rating" content="General"/>
@@ -32,12 +32,13 @@
 
     <link rel="shortcut icon" href="/favicon.ico"/>
 
-    <script type="text/javascript" src="{{ asset('resources/views/js/jquery-1.6.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('resources/views/js/jquery.cycle.all.latest.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('resources/views/js/jcarousellite.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('resources/views/js/jquery.corner.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('resources/views/js/ss_script.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('resources/views/js/bsn.AutoSuggest_c_2.0.js') }}"></script>
+
+{{--    <script type="text/javascript" src="{{ asset('resources/views/js/jquery-1.6.1.min.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('resources/views/js/jquery.cycle.all.latest.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('resources/views/js/jcarousellite.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('resources/views/js/jquery.corner.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('resources/views/js/ss_script.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('resources/views/js/bsn.AutoSuggest_c_2.0.js') }}"></script>--}}
 
     <script type="text/javascript">
 
@@ -52,12 +53,12 @@
         }, 10000);
         console.log(refreshId);
 
-        var host = "http://www.startsanatate.ro";
+        const host = "{{ env('APP_URL') }}";
 
         function getURL(mode, page, params) {
-            if (page == "")
-                return host + (!mode ? "index.php" : "/") + (params && params != "" ? (params.substr(0, 1) != "#" ? "&" : "") + params : "");
-            return host + (!mode ? "/index.php?page=" : "") + (mode ? "/" : "") + page + (mode ? ".html" : "") + (params && params != "" ? (params.substr(0, 1) != "#" ? "&" : "") + params : "");
+            if (page === "")
+                return host + (!mode ? "index.php" : "/") + (params && params !== "" ? (params.substr(0, 1) !== "#" ? "&" : "") + params : "");
+            return host + (!mode ? "/index.php?page=" : "") + (mode ? "/" : "") + page + (mode ? ".html" : "") + (params && params !== "" ? (params.substr(0, 1) !== "#" ? "&" : "") + params : "");
         }
 
 
@@ -69,7 +70,7 @@
                 return false;
             }
 
-            if ((form.q.value == "cauta medicament") || (form.q.value == "cauta termen medical")) {
+            if ((form.q.value === "cauta medicament") || (form.q.value === "cauta termen medical")) {
                 alert("Va rugam sa introduceti termenii de cautat!");
                 return false;
             }
@@ -93,33 +94,31 @@
 <div id="wrapper">
 
     <div id="header">
-        <div style="text-align:center; float:left; padding:10px;"><a href="/"><img src="/img/logo.png" alt="StartSanatate"/></a></div>
-        <div style="text-align:center; float:right; padding-right:10px;">
-            <?php
-            if (date("i") % 13 == 0)
-            {
-                echo 'Top banner';
-            }
-            else
-            {
-            ?>
-            <a href="http://asociatiamame.com/index.php/proiecte/medicina/215-centrul-stelutelor" target="_blank" title="Asociatia M.A.M.E.">
-                <img src="http://asociatiamame.com/images/banner/01_468_x_60_full_banner_MAME.gif" alt="Asociatia M.A.M.E." width="468" height="60" style="border: 0;">
-            </a>
-            <?php
-            }
-            ?>
+        <div style="text-align:center; float:left; padding:10px;"><a href="/"><img src="/img/logo.png"
+                                                                                   alt="StartSanatate"/></a></div>
+        <div style="text-align:center; float:right; padding-right:10px; background-color: #6b7280">
+            #Top banner
         </div>
     </div>
 
+    @php
+        $topLinks = [
+            ['/', 'prima pagina'],
+            ['dictionar-medical.html', 'dictionar medical'],
+            ['dictionar-medicamente.html', 'dictionar medicamente'],
+            ['articole-medicale.html', 'articole medicale'],
+            ['articole-medicale-rss.html', 'articole rss'],
+            ['contact.html', 'contact'],
+        ];
+    @endphp
+
     <div id="menu">
         <ul>
-            <li><a href="/" class="current" title="prima pagina">prima pagina</a></li>
-            <li><a href="/dictionar-medical.html" title="dictionar medical">dictionar medical</a></li>
-            <li><a href="/dictionar-medicamente.html" title="dictionar / lista medicamente">dictionar medicamente</a></li>
-            <li><a href="/articole-medicale.html" title="articole medicale">articole medicale</a></li>
-            <li><a href="/articole-medicale-rss.html" title="articole medicale rss">articole rss</a></li>
-            <li><a href="/contact.html" title="contact">contact</a></li>
+            @foreach($topLinks as $link)
+                <li><a href="{{ $link[0] }}"
+                       {!! request()->is($link[0]) ? 'class="current"' : '' !!} title="{{ $link[1] }}">{{ $link[1] }}</a>
+                </li>
+            @endforeach
         </ul>
     </div>
 

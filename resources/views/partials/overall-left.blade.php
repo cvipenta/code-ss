@@ -2,7 +2,7 @@
 
     <div class="boxleftColumn">
         <div style="overflow:hidden;">
-            <a href="/analize-medicale.html">ANALIZE MEDICALE DE LABORATOR</a><br/>
+            <a href="/analize-medicale.html">{{__('ANALIZE MEDICALE DE LABORATOR')}}</a><br/>
             Aici gasiti analizele medicale grupate pe categorii precum si detalii generale si specifice pentru categoriile respective.<br/>
             Selectati o categorie din lista de mai jos:<br/>
             <ul style="list-type:none;">
@@ -19,41 +19,30 @@
         </div>
     </div>
 
+    @php
+        $letters = range('A', 'Z');
+        //(($l == $_GET['letter']) && strstr($_SERVER['REQUEST_URI'], 'medicamente') == TRUE) ? $class = 'letter_selected' : $class = 'letter'
+        //                (($l == $_GET['letter']) && strstr($_SERVER['REQUEST_URI'], 'medical') == TRUE) ? $class = 'letter_selected' : $class = 'letter';
+    @endphp
 
     <div class="boxleftColumn">
 
         <div id="left_dictionary">
             <p>Dictionar de medicamente online</p>
-            <?
-            foreach ($letters AS $l)
-            {
-                (($l == $_GET['letter']) && strstr($_SERVER['REQUEST_URI'], 'medicamente') == TRUE) ? $class = 'letter_selected' : $class = 'letter';
-                echo "\t\t" . '<a href="' . SITE_URL . 'dictionar-medicamente/medicamente-care-incep-cu-' . $l . '.html" title="Litera ' . $l . ' - Dictionar medicamente">' . strtoupper($l) . '</a>' . "\n";
-            }
-            ?>
+            @foreach ($letters AS $l)
+                <a href="{{ env('SITE_URL') }}dictionar-medicamente/medicamente-care-incep-cu-{{ $l  }}.html"
+                   title="Litera {{ $l  }} - Dictionar medicamente">{{ $l  }}</a>
+            @endforeach
             <br/><br/>
-            <p>Dictionar medical online</p>
-            <?
-            foreach ($letters AS $l)
-            {
-                (($l == $_GET['letter']) && strstr($_SERVER['REQUEST_URI'], 'medical') == TRUE) ? $class = 'letter_selected' : $class = 'letter';
-                echo "\t\t" . '<a href="' . SITE_URL . 'dictionar-medical/termeni-medicali-' . $l . '.html" title="Litera ' . $l . ' - Dictionar medical">' . strtoupper($l) . '</a>' . "\n";
-            }
-            ?>
 
-            <br/><br/>
-            <span style="background-color:#ABCDEF; text-align:justify;">Puteti trimite articole cu tema medicala la <br/><a href="mailto:articole@startsanatate.ro">adresa de email</a></span>
+            <p>Dictionar medical online</p>
+
+             @foreach ($letters AS $l)
+                <a href="{{ env('SITE_URL') }}dictionar-medical/termeni-medicali-{{ $l  }}.html"
+                   title="Litera {{ $l  }} - Dictionar medical">{{ $l  }}</a>
+            @endforeach
 
         </div>
-    </div>
-
-
-    <div align="center" style="margin-top:20px; clear:both;">
-        <!--/Start trafic.ro/-->
-        <script type="text/javascript">t_rid = "startsanatate";</script>
-        <script type="text/javascript" src="http://storage.trafic.ro/js/trafic.js"></script>
-        <noscript><p><a href="http://www.trafic.ro/top/?rid=startsanatate"><img alt="trafic ranking" src="http://log.trafic.ro/cgi-bin/pl.dll?rid=startsanatate"/></a></p><a href="http://www.trafic.ro">Statistici web</a></noscript>
-        <!--/End trafic.ro/-->
     </div>
 
 </div>
