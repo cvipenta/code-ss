@@ -104,11 +104,11 @@
     @php
         $topLinks = [
             ['/', 'prima pagina'],
-            ['dictionar-medical.html', 'dictionar medical'],
-            ['dictionar-medicamente.html', 'dictionar medicamente'],
-            ['articole-medicale.html', 'articole medicale'],
-            ['articole-medicale-rss.html', 'articole rss'],
-            ['contact.html', 'contact'],
+            ['/dictionar-medical.html', 'dictionar medical'],
+            ['/dictionar-medicamente.html', 'dictionar medicamente'],
+            ['/articole-medicale.html', 'articole medicale'],
+            ['/articole-medicale-rss.html', 'articole rss'],
+            ['/contact.html', 'contact'],
         ];
     @endphp
 
