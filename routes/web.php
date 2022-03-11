@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AnalizeMedicale;
+use App\Http\Controllers\MedicalTestController;
 use App\Http\Controllers\Articole;
 use App\Http\Controllers\ArticoleRss;
 use App\Http\Controllers\Contact;
@@ -33,5 +33,5 @@ Route::get('/analize-medicale', [MedicalTestCategoryController::class, 'index'])
 Route::get('/analize-medicale.html', [MedicalTestCategoryController::class, 'index']);
 Route::get('/analize-medicale/{medicalTestCategory:slug}.html', [MedicalTestCategoryController::class, 'show']);
 
-Route::get('/analize-medicale-explicate/{model:am_slug}.html', [AnalizeMedicale::class, 'show']);
+Route::get('/analize-medicale-explicate/{medicalTest:slug}.html', [MedicalTestController::class, 'show']);
 

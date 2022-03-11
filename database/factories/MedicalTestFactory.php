@@ -25,7 +25,7 @@ class MedicalTestFactory extends Factory
         return array(
             'title' => $title . ' [' . $category->name . ']',
             'slug' => Str::slug($title),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->paragraphs(5, $asText = true),
             'category_id' => $category,
             'hits' => $this->faker->randomDigitNotZero()
         );
