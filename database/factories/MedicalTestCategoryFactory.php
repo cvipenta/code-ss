@@ -13,7 +13,9 @@ class MedicalTestCategoryFactory extends Factory
     /**
      * @var array|string[]
      */
-    protected static array $categories = ['BIOCHIMIE', 'HEMATOLOGIE', 'COAGULARE', 'IMUNOLOGIE', 'CITOLOGIE', 'MICROBIOLOGIE', 'BIOLOGIE MOLECULARA', 'ELECTROFOREZA', 'URINA'];
+    protected static array $categories = [
+        'BIOCHIMIE', 'HEMATOLOGIE', 'COAGULARE', 'IMUNOLOGIE', 'CITOLOGIE', 'MICROBIOLOGIE',
+        'BIOLOGIE MOLECULARA', 'ELECTROFOREZA', 'URINA', 'FARA CATEGORIE'];
 
     /**
      * Define the model's default state.

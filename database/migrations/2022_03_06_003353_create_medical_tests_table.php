@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('medical_tests',
             static function (Blueprint $table) {
-                $table->integer('id')->primary();
+                $table->unsignedInteger('id', true);
                 $table->string('title')->default('');
                 $table->string('slug')->default('');
                 $table->text('description');
-                $table->string('category')->nullable();
+                $table->unsignedInteger('category_id');
                 $table->integer('hits')->default(0);
                 $table->timestamps();
+
+                $table->foreign('category_id')->references('id')->on('medical_test_categories');
             });
     }
 
