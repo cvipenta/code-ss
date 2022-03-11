@@ -20,12 +20,13 @@ class MedicalTestFactory extends Factory
     public function definition(): array
     {
         $title = $this->faker->sentence();
+        $category = MedicalTestCategory::findOrFail(rand(1,10));
 
         return array(
-            'title' => $title,
+            'title' => $title . ' [' . $category->name . ']',
             'slug' => Str::slug($title),
             'description' => $this->faker->paragraph(),
-            'category_id' => MedicalTestCategory::findOrFail(rand(1,10)),
+            'category_id' => $category,
             'hits' => $this->faker->randomDigitNotZero()
         );
     }

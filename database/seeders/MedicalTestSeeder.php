@@ -14,6 +14,6 @@ class MedicalTestSeeder extends Seeder
      */
     public function run()
     {
-        MedicalTest::factory(2000)->create();
+        MedicalTest::factory(250)->create();
     }
 }

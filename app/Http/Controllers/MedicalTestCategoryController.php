@@ -11,8 +11,17 @@ class MedicalTestCategoryController extends Controller
 
     public function index()
     {
-        return view('medical_test_category.categories', [
+        return view('medical_test_category.index', [
             'categories' => MedicalTestCategory::all()
+        ]);
+    }
+
+    public function show(MedicalTestCategory $medicalTestCategory)
+    {
+        $records = $medicalTestCategory->medicalTests()->get();
+
+        return view('medical_test_category.show', [
+            'records' => $records
         ]);
     }
 
@@ -33,17 +42,6 @@ class MedicalTestCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMedicalTestCategoryRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MedicalTestCategory  $medicalTestCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(MedicalTestCategory $medicalTestCategory)
     {
         //
     }

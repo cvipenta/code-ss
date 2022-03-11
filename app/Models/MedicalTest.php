@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class MedicalTest extends Model
 {
     use HasFactory;
+
+    public function category()
+    {
+        $this->belongsTo(MedicalTestCategory::class);
+    }
 }

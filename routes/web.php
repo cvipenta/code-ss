@@ -7,6 +7,7 @@ use App\Http\Controllers\Contact;
 use App\Http\Controllers\DictionarMedical;
 use App\Http\Controllers\DictionarMedicamente;
 use App\Http\Controllers\Homepage;
+use App\Http\Controllers\MedicalTestCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +29,9 @@ Route::get('/articole-medicale.html', [Articole::class, 'index']);
 Route::get('/articole-medicale-rss.html', [ArticoleRss::class, 'index']);
 Route::get('/contact.html', [Contact::class, 'index']);
 
-Route::get('/analize-medicale', [AnalizeMedicale::class, 'index']);
-Route::get('/analize-medicale.html', [AnalizeMedicale::class, 'categories']);
-Route::get('/analize-medicale/{category}.html', [AnalizeMedicale::class, 'category']);
+Route::get('/analize-medicale', [MedicalTestCategoryController::class, 'index']);
+Route::get('/analize-medicale.html', [MedicalTestCategoryController::class, 'index']);
+Route::get('/analize-medicale/{medicalTestCategory:slug}.html', [MedicalTestCategoryController::class, 'show']);
+
 Route::get('/analize-medicale-explicate/{model:am_slug}.html', [AnalizeMedicale::class, 'show']);
 
