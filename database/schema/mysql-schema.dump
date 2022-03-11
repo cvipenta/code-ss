@@ -1,0 +1,755 @@
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `analize_medicale_all`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `analize_medicale_all` (
+  `am_id` int NOT NULL AUTO_INCREMENT,
+  `am_title` varchar(255) NOT NULL DEFAULT '',
+  `am_slug` varchar(255) NOT NULL DEFAULT '',
+  `am_description` text NOT NULL,
+  `am_category` varchar(255) DEFAULT NULL,
+  `am_payment` varchar(255) DEFAULT NULL,
+  `am_results` varchar(255) DEFAULT NULL,
+  `am_price` varchar(255) DEFAULT NULL,
+  `am_hits` int DEFAULT '0',
+  `am_lastupdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`am_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `banned__nt_rss_news`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `banned__nt_rss_news` (
+  `news_id` int NOT NULL AUTO_INCREMENT,
+  `news_rss_id` int NOT NULL DEFAULT '0',
+  `news_pubdate` date NOT NULL DEFAULT '0000-00-00',
+  `news_title` varchar(255) DEFAULT NULL,
+  `news_link` varchar(255) NOT NULL DEFAULT '',
+  `news_description` text,
+  `news_category` varchar(100) DEFAULT NULL,
+  `news_image` varchar(255) DEFAULT NULL,
+  `news_image_local` varchar(20) DEFAULT NULL,
+  `hits` int NOT NULL DEFAULT '0',
+  `md5_title` varchar(32) NOT NULL DEFAULT '0',
+  `last_change` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` int NOT NULL DEFAULT '1' COMMENT '1 shown 0 not shown',
+  PRIMARY KEY (`news_id`),
+  UNIQUE KEY `md5_title` (`md5_title`),
+  KEY `news_rss_id` (`news_rss_id`),
+  KEY `news_pubdate` (`news_pubdate`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `banned__ss_articole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `banned__ss_articole` (
+  `art_id` int NOT NULL DEFAULT '0',
+  `art_category` int DEFAULT '0',
+  `art_title` varchar(255) NOT NULL DEFAULT '',
+  `art_keywords` varchar(255) NOT NULL DEFAULT '',
+  `art_text` text NOT NULL,
+  `art_source` varchar(255) DEFAULT NULL,
+  `art_link` varchar(255) NOT NULL DEFAULT '',
+  `art_image` varchar(255) DEFAULT NULL,
+  `art_date` date NOT NULL COMMENT 'publication date',
+  `art_hits` int DEFAULT '0',
+  KEY `art_id` (`art_id`),
+  KEY `art_title` (`art_title`(20))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cal_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cal_products` (
+  `p_id` int NOT NULL AUTO_INCREMENT,
+  `p_titlu` varchar(255) NOT NULL,
+  `p_categorie` varchar(255) NOT NULL,
+  `p_calorii` int DEFAULT NULL,
+  `p_proteine` double(4,1) DEFAULT NULL,
+  `p_lipide` double(4,1) DEFAULT NULL,
+  `p_carbohidrati` double(4,1) DEFAULT NULL,
+  `p_fibre` double(4,1) DEFAULT NULL,
+  `p_aproximari` double(4,1) DEFAULT NULL,
+  PRIMARY KEY (`p_id`),
+  UNIQUE KEY `p_titlu` (`p_titlu`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cal_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cal_users` (
+  `u_id` int NOT NULL AUTO_INCREMENT,
+  `u_username` varchar(20) NOT NULL,
+  `u_password` varchar(20) NOT NULL,
+  `u_email` varchar(50) NOT NULL,
+  PRIMARY KEY (`u_id`),
+  UNIQUE KEY `u_username` (`u_username`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cron_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cron_jobs` (
+  `cron_id` int NOT NULL AUTO_INCREMENT,
+  `cron_name` varchar(255) DEFAULT NULL,
+  `cron_details` varchar(255) DEFAULT NULL,
+  `cron_fileonserver` varchar(255) DEFAULT NULL,
+  `cron_result` varchar(255) DEFAULT NULL,
+  `cron_frequency` int DEFAULT '12' COMMENT 'defined in hours',
+  `cron_status` int DEFAULT '1' COMMENT '1 - active 0 - inactive ',
+  PRIMARY KEY (`cron_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cron_jobs_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cron_jobs_history` (
+  `job_id` int NOT NULL AUTO_INCREMENT,
+  `job_name` varchar(30) NOT NULL DEFAULT '',
+  `job_start` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `job_end` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `job_status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`job_id`),
+  KEY `job_name` (`job_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cron_jobs_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cron_jobs_status` (
+  `job_name` varchar(30) NOT NULL DEFAULT '',
+  `job_start` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `job_end` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `job_status` tinyint(1) NOT NULL DEFAULT '0',
+  UNIQUE KEY `job_name` (`job_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cron_semaphore`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cron_semaphore` (
+  `cron_name` varchar(255) NOT NULL,
+  `cron_running_status` int NOT NULL,
+  `cron_last_access` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `cron_name` (`cron_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `mobi_platforms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mobi_platforms` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) NOT NULL DEFAULT '',
+  `shortname` varchar(32) NOT NULL DEFAULT '',
+  `imgwidth` mediumint NOT NULL DEFAULT '0',
+  `imgheight` mediumint NOT NULL DEFAULT '0',
+  `screenwidth` mediumint NOT NULL DEFAULT '0',
+  `screenheight` mediumint NOT NULL DEFAULT '0',
+  `imgtype` varchar(5) NOT NULL DEFAULT '',
+  `parser` varchar(16) NOT NULL DEFAULT 'wml',
+  `agent` text NOT NULL,
+  `agentb` varchar(32) NOT NULL DEFAULT '',
+  `manufacturer` int unsigned NOT NULL DEFAULT '0',
+  `3g` tinyint(1) NOT NULL DEFAULT '0',
+  `wifi` smallint unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `wifi` (`wifi`),
+  KEY `Agent` (`agent`(10),`agentb`(10))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `mobi_platforms_manufacturers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mobi_platforms_manufacturers` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 PACK_KEYS=0;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_categories` (
+  `id` smallint NOT NULL AUTO_INCREMENT,
+  `cat_shortname` tinytext CHARACTER SET utf8 COLLATE utf8_romanian_ci NOT NULL,
+  `cat_priority` tinyint(1) NOT NULL DEFAULT '0',
+  `cat_name_ro` tinytext CHARACTER SET utf8 COLLATE utf8_romanian_ci NOT NULL,
+  `cat_name_en` tinytext CHARACTER SET utf8 COLLATE utf8_romanian_ci NOT NULL,
+  `cat_active` tinyint(1) NOT NULL DEFAULT '1',
+  `priority` text NOT NULL,
+  `frecventa` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_report_import_rss`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_report_import_rss` (
+  `import_id` int NOT NULL AUTO_INCREMENT,
+  `report_ID` varchar(11) NOT NULL DEFAULT '0',
+  `import_link` varchar(255) NOT NULL DEFAULT '',
+  `import_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `import_news_in_feed` int DEFAULT '0',
+  `import_count` int NOT NULL DEFAULT '0',
+  `import_count_explain` text NOT NULL,
+  `import_category_id` int NOT NULL DEFAULT '0',
+  `import_rss_id` int NOT NULL DEFAULT '0',
+  `import_rss_subcategory` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`import_id`),
+  KEY `import_rss_id` (`import_rss_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_rss`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_rss` (
+  `rss_id` int NOT NULL AUTO_INCREMENT,
+  `rss_subcategory` int NOT NULL DEFAULT '0',
+  `rss_url` varchar(255) NOT NULL DEFAULT '',
+  `rss_news_category` varchar(100) DEFAULT NULL,
+  `rss_last_update` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `rss_last_update_nr` int unsigned NOT NULL DEFAULT '0',
+  `rss_update_frequency` int DEFAULT '12' COMMENT 'no of hours between updates',
+  `rss_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 active 0 inactive',
+  PRIMARY KEY (`rss_id`),
+  KEY `rss_subcategory` (`rss_subcategory`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_rss_news`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_rss_news` (
+  `news_id` int NOT NULL AUTO_INCREMENT,
+  `news_rss_id` int NOT NULL DEFAULT '0',
+  `news_pubdate` date NOT NULL DEFAULT '0000-00-00',
+  `news_title` varchar(255) DEFAULT NULL,
+  `news_link` varchar(255) NOT NULL DEFAULT '',
+  `news_description` text,
+  `news_category` varchar(100) DEFAULT NULL,
+  `news_image` varchar(255) DEFAULT NULL,
+  `news_image_local` varchar(20) DEFAULT NULL,
+  `hits` int NOT NULL DEFAULT '0',
+  `md5_title` varchar(32) NOT NULL DEFAULT '0',
+  `last_change` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` int NOT NULL DEFAULT '1' COMMENT '1 shown 0 not shown',
+  PRIMARY KEY (`news_id`),
+  UNIQUE KEY `md5_title` (`md5_title`),
+  KEY `news_rss_id` (`news_rss_id`),
+  KEY `news_pubdate` (`news_pubdate`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_rss_news_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_rss_news_images` (
+  `news_id` int NOT NULL AUTO_INCREMENT,
+  `news_image_local` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`news_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_rss_news_titles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_rss_news_titles` (
+  `news_id` int NOT NULL AUTO_INCREMENT,
+  `news_title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`news_id`),
+  FULLTEXT KEY `news_title` (`news_title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_rss_news_titles_words`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_rss_news_titles_words` (
+  `ntw_word` varchar(255) NOT NULL DEFAULT '',
+  `ntw_newsids` text NOT NULL,
+  UNIQUE KEY `ntw_word` (`ntw_word`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `nt_subcategories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nt_subcategories` (
+  `subcat_id` smallint NOT NULL AUTO_INCREMENT,
+  `category_id` smallint NOT NULL DEFAULT '0',
+  `subcat_shortname` varchar(100) CHARACTER SET utf8 COLLATE utf8_romanian_ci NOT NULL,
+  `subcat_priority` tinyint(1) NOT NULL DEFAULT '0',
+  `subcat_name_ro` varchar(255) CHARACTER SET utf8 COLLATE utf8_romanian_ci NOT NULL,
+  `subcat_name_en` varchar(255) CHARACTER SET utf8 COLLATE utf8_romanian_ci NOT NULL,
+  `subcat_active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`subcat_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_admin` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_romanian_ci DEFAULT NULL,
+  `parola` varchar(20) CHARACTER SET utf8 COLLATE utf8_romanian_ci DEFAULT NULL,
+  `pages` varchar(255) CHARACTER SET utf8 COLLATE utf8_romanian_ci DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `status` tinyint unsigned DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8_romanian_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_analize_medicale_search`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_analize_medicale_search` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `s_string` varchar(100) NOT NULL DEFAULT '',
+  `s_results` int NOT NULL DEFAULT '0',
+  `s_hits` int NOT NULL DEFAULT '0',
+  `s_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `s_ip` varchar(15) NOT NULL DEFAULT '',
+  `s_lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`s_string`(20)),
+  UNIQUE KEY `s_string` (`s_string`),
+  KEY `s_id` (`s_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_analize_medicale_search_suggest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_analize_medicale_search_suggest` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `s_string` varchar(100) NOT NULL DEFAULT '',
+  `s_results` int NOT NULL DEFAULT '0',
+  `s_hits` int NOT NULL DEFAULT '0',
+  `s_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `s_ip` varchar(15) NOT NULL DEFAULT '',
+  `s_lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`s_string`(20)),
+  KEY `s_id` (`s_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_articole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_articole` (
+  `art_id` smallint unsigned NOT NULL DEFAULT '0',
+  `art_category` smallint unsigned NOT NULL DEFAULT '0',
+  `art_title` varchar(1000) NOT NULL DEFAULT '',
+  `art_keywords` varchar(255) NOT NULL DEFAULT '',
+  `art_text` text NOT NULL,
+  `art_source` varchar(255) DEFAULT NULL,
+  `art_link` varchar(255) NOT NULL DEFAULT '',
+  `art_image` varchar(255) DEFAULT NULL,
+  `art_date` date NOT NULL COMMENT 'publication date',
+  `art_hits` int DEFAULT '0',
+  PRIMARY KEY (`art_id`),
+  KEY `art_title` (`art_title`(20))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_articole_2012`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_articole_2012` (
+  `art_id` int NOT NULL DEFAULT '0',
+  `art_category` int DEFAULT '0',
+  `art_title` varchar(255) NOT NULL DEFAULT '',
+  `art_keywords` varchar(255) NOT NULL DEFAULT '',
+  `art_text` text NOT NULL,
+  `art_source` varchar(255) DEFAULT NULL,
+  `art_link` varchar(255) NOT NULL DEFAULT '',
+  `art_image` varchar(255) DEFAULT NULL,
+  `art_date` date NOT NULL COMMENT 'publication date',
+  `art_hits` int DEFAULT '0',
+  PRIMARY KEY (`art_id`),
+  UNIQUE KEY `art_id` (`art_id`),
+  KEY `art_title` (`art_title`(20))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_articole_copy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_articole_copy` (
+  `art_id` int NOT NULL DEFAULT '0',
+  `art_category` varchar(255) NOT NULL DEFAULT '0',
+  `art_title` varchar(255) NOT NULL DEFAULT '',
+  `art_keywords` varchar(255) NOT NULL DEFAULT '',
+  `art_text` text NOT NULL,
+  `art_link` varchar(255) NOT NULL DEFAULT '',
+  `art_image` varchar(255) DEFAULT NULL,
+  `art_hits` int DEFAULT '0',
+  KEY `art_id` (`art_id`),
+  KEY `art_title` (`art_title`(20))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_articole_medicalnewstoday`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_articole_medicalnewstoday` (
+  `mnt_id` int NOT NULL AUTO_INCREMENT,
+  `mnt_link` varchar(10) NOT NULL DEFAULT '',
+  `mnt_title_en` varchar(255) NOT NULL DEFAULT '',
+  `mnt_title_ro` varchar(255) NOT NULL DEFAULT '',
+  `mnt_key_en` varchar(255) NOT NULL DEFAULT '',
+  `mnt_key_ro` varchar(255) NOT NULL DEFAULT '',
+  `mnt_desc_en` varchar(255) NOT NULL DEFAULT '',
+  `mnt_desc_ro` varchar(255) NOT NULL DEFAULT '',
+  `mnt_content_en` text NOT NULL,
+  `mnt_content_ro` text NOT NULL,
+  PRIMARY KEY (`mnt_id`),
+  KEY `mnt_title_en` (`mnt_title_en`(20)),
+  KEY `mnt_title_ro` (`mnt_title_ro`(20))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_articole_wwwhealthcom`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_articole_wwwhealthcom` (
+  `art_id` int NOT NULL AUTO_INCREMENT,
+  `art_title` varchar(255) NOT NULL DEFAULT '',
+  `art_text` text,
+  `art_text_raw` text NOT NULL,
+  `art_link` varchar(150) NOT NULL DEFAULT '',
+  `art_update` int DEFAULT '0',
+  `art_hits` int NOT NULL,
+  PRIMARY KEY (`art_id`),
+  KEY `art_link` (`art_link`(30))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_banned_words`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_banned_words` (
+  `we_id` int NOT NULL AUTO_INCREMENT,
+  `we_string` varchar(255) NOT NULL DEFAULT '',
+  `we_reason` int NOT NULL DEFAULT '1' COMMENT 'motivul excluziunii 1. comun 2. trivial etc',
+  PRIMARY KEY (`we_id`),
+  UNIQUE KEY `we_string` (`we_string`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_category` (
+  `cat_id` int NOT NULL AUTO_INCREMENT,
+  `cat_name` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cat_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_clicks_location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_clicks_location` (
+  `click_id` int NOT NULL DEFAULT '0',
+  `click_url_from` varchar(255) NOT NULL DEFAULT '',
+  `click_url_to` varchar(255) NOT NULL DEFAULT '',
+  `click_ip` varchar(15) NOT NULL DEFAULT '',
+  `click_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`click_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_contact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_contact` (
+  `contact_id` int NOT NULL AUTO_INCREMENT,
+  `contact_ip` varchar(15) NOT NULL DEFAULT '',
+  `contact_time` int NOT NULL DEFAULT '0',
+  `contact_details` text NOT NULL,
+  `contact_realtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`contact_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_dictionar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_dictionar` (
+  `dictionar_id` int NOT NULL AUTO_INCREMENT,
+  `dictionar_termen` varchar(100) NOT NULL DEFAULT '',
+  `dictionar_definitie` text NOT NULL,
+  `dictionar_articolereferinta` text NOT NULL,
+  PRIMARY KEY (`dictionar_id`),
+  KEY `dictionar_termen` (`dictionar_termen`(10))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_dictionar2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_dictionar2` (
+  `dictionar_id` int NOT NULL AUTO_INCREMENT,
+  `dictionar_termen` varchar(100) NOT NULL DEFAULT '',
+  `dictionar_definitie` text NOT NULL,
+  `dictionar_articolereferinta` text NOT NULL,
+  PRIMARY KEY (`dictionar_id`),
+  KEY `dictionar_termen` (`dictionar_termen`(10))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_dictionar_search`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_dictionar_search` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `s_string` varchar(100) NOT NULL DEFAULT '',
+  `s_results` int NOT NULL DEFAULT '0',
+  `s_hits` int NOT NULL DEFAULT '0',
+  `s_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `s_ip` varchar(15) NOT NULL DEFAULT '',
+  `s_lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `s_string` (`s_string`(20)),
+  KEY `s_id` (`s_id`),
+  KEY `s_lastchange` (`s_lastchange`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_dictionar_search_suggest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_dictionar_search_suggest` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `s_string` varchar(100) NOT NULL DEFAULT '',
+  `s_results` int NOT NULL DEFAULT '0',
+  `s_hits` int NOT NULL DEFAULT '0',
+  `s_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `s_ip` varchar(15) NOT NULL DEFAULT '',
+  `s_lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `s_string` (`s_string`(20)),
+  KEY `s_id` (`s_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_ip_deny`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_ip_deny` (
+  `deny_ip` varchar(15) NOT NULL,
+  `deny_count` int NOT NULL,
+  `deny_starttime` datetime NOT NULL,
+  `deny_lastcheck` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `deny_ip` (`deny_ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_medicamente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_medicamente` (
+  `medicament_id` int NOT NULL AUTO_INCREMENT,
+  `medicament_termen` varchar(100) NOT NULL DEFAULT '',
+  `medicament_text` text NOT NULL,
+  PRIMARY KEY (`medicament_id`),
+  KEY `medicament_termen` (`medicament_termen`(10))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_medicamente_bkp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_medicamente_bkp` (
+  `medicament_id` int NOT NULL AUTO_INCREMENT,
+  `medicament_termen` varchar(100) NOT NULL DEFAULT '',
+  `medicament_text` text NOT NULL,
+  PRIMARY KEY (`medicament_id`),
+  KEY `medicament_termen` (`medicament_termen`(10))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_medicamente_nomenclator`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_medicamente_nomenclator` (
+  `mn_id` int NOT NULL DEFAULT '0',
+  `mn_denumire_comerciala` varchar(100) NOT NULL DEFAULT '',
+  `mn_dci` varchar(60) NOT NULL DEFAULT '',
+  `mn_concentratie` varchar(255) NOT NULL DEFAULT '',
+  `mn_cod_atc` varchar(10) NOT NULL DEFAULT '',
+  `mn_actiune_terapeutica` varchar(150) NOT NULL DEFAULT '',
+  `mn_prescriptie` varchar(255) NOT NULL DEFAULT '',
+  `mn_ambalaj` varchar(255) NOT NULL DEFAULT '',
+  `mn_volum_ambalaj` varchar(20) NOT NULL DEFAULT '',
+  `mn_valabilitate_ambalaj` varchar(100) NOT NULL DEFAULT '',
+  `mn_cod_cim` varchar(20) NOT NULL DEFAULT '',
+  `mn_firma_tara_producatoare` varchar(100) NOT NULL DEFAULT '',
+  `mn_firma_tara_detinatoare` varchar(100) NOT NULL DEFAULT '',
+  `mn_nr_data_ambalaj` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`mn_id`),
+  KEY `mn_dci` (`mn_dci`),
+  KEY `mn_actiune_terapeutica` (`mn_actiune_terapeutica`),
+  KEY `mn_firma_tara_producatoare` (`mn_firma_tara_producatoare`),
+  KEY `mn_cod_atc` (`mn_cod_atc`),
+  KEY `mn_denumire_comerciala` (`mn_denumire_comerciala`(20))
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='http://www.anm.ro/app/nom/anm_maint.asp?ID=''.$i';
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_medicamente_search`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_medicamente_search` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `s_string` varchar(100) NOT NULL DEFAULT '',
+  `s_results` int NOT NULL DEFAULT '0',
+  `s_hits` int NOT NULL DEFAULT '0',
+  `s_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `s_ip` varchar(15) NOT NULL DEFAULT '',
+  `s_lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`s_string`(20)),
+  UNIQUE KEY `s_string` (`s_string`),
+  KEY `s_id` (`s_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_medicamente_search_suggest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_medicamente_search_suggest` (
+  `s_id` int NOT NULL AUTO_INCREMENT,
+  `s_string` varchar(100) NOT NULL DEFAULT '',
+  `s_results` int NOT NULL DEFAULT '0',
+  `s_hits` int NOT NULL DEFAULT '0',
+  `s_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `s_ip` varchar(15) NOT NULL DEFAULT '',
+  `s_lastchange` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`s_string`(20)),
+  KEY `s_id` (`s_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_referers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_referers` (
+  `ref_id` int NOT NULL AUTO_INCREMENT,
+  `ref_string` varchar(255) NOT NULL DEFAULT '',
+  `ref_url` varchar(255) NOT NULL DEFAULT '',
+  `ref_uri` varchar(255) NOT NULL DEFAULT '',
+  `ref_ip` varchar(15) NOT NULL DEFAULT '',
+  `ref_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ref_id`),
+  KEY `ref_url` (`ref_url`,`ref_uri`,`ref_ip`),
+  KEY `ref_string` (`ref_string`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_referers_string_top`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_referers_string_top` (
+  `top_id` int NOT NULL AUTO_INCREMENT,
+  `top_contor` int NOT NULL DEFAULT '0',
+  `top_string` varchar(255) NOT NULL DEFAULT '',
+  `top_uri` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`top_id`),
+  UNIQUE KEY `top_uri` (`top_string`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_referers_uri_top`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_referers_uri_top` (
+  `top_id` int NOT NULL AUTO_INCREMENT,
+  `top_contor` int NOT NULL DEFAULT '0',
+  `top_uri` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`top_id`),
+  UNIQUE KEY `top_uri` (`top_uri`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_useragents`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_useragents` (
+  `ua_id` int NOT NULL AUTO_INCREMENT,
+  `ua_ip` varchar(15) NOT NULL DEFAULT '',
+  `ua_name` varchar(255) NOT NULL DEFAULT '' COMMENT 'HTTP_USER_AGENT',
+  PRIMARY KEY (`ua_id`),
+  UNIQUE KEY `ua_ip` (`ua_ip`,`ua_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `ss_visits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ss_visits` (
+  `visit_hitID` int NOT NULL AUTO_INCREMENT,
+  `visit_sessionID` char(10) NOT NULL DEFAULT '',
+  `visit_uri` varchar(255) NOT NULL DEFAULT '',
+  `visit_ip` int unsigned NOT NULL COMMENT 'IP2LONG',
+  `visit_type` tinyint NOT NULL DEFAULT '1' COMMENT '1. normal  2. bot  3.devIP',
+  `visit_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`visit_hitID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+INSERT INTO `migrations` VALUES (5,'2014_10_12_000000_create_users_table',1);
+INSERT INTO `migrations` VALUES (6,'2014_10_12_100000_create_password_resets_table',1);
+INSERT INTO `migrations` VALUES (7,'2019_08_19_000000_create_failed_jobs_table',1);
+INSERT INTO `migrations` VALUES (8,'2019_12_14_000001_create_personal_access_tokens_table',1);
+INSERT INTO `migrations` VALUES (9,'2022_03_06_003353_create_analize_medicale_all_table',1);
+INSERT INTO `migrations` VALUES (11,'2022_03_06_003353_update_analize_medicale_all_table',2);
