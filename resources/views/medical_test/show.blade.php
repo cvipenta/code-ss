@@ -1,7 +1,8 @@
 @extends('site')
 
 @section('content')
-    <h1>{{ $record->title }}</h1>
+    <h3>{{ $record->title }}</h3>
+    <h4>{{ $record->category->slug }}</h4>
     <p>
         {!! $record->description !!}
     </p>

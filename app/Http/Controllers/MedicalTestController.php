@@ -8,7 +8,7 @@ class MedicalTestController extends Controller
 {
     public function show(MedicalTest $medicalTest)
     {
-        return view('medical_test_show', [
+        return view('medical_test.show', [
             'record' => $medicalTest
         ]);
     }
