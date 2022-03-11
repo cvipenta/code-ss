@@ -15,6 +15,6 @@ class MedicalTestCategory extends Model
      */
     public function medicalTests(): HasMany
     {
-        return $this->hasMany(MedicalTest::class, 'category_id', 'id');
+        return $this->hasMany(MedicalTest::class, 'category_id', 'id')->orderBy('title');
     }
 }

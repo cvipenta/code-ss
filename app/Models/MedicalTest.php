@@ -12,6 +12,6 @@ class MedicalTest extends Model
 
     public function category(): Relation
     {
-        return $this->belongsTo(MedicalTestCategory::class/*, 'category_id'*/);
+        return $this->belongsTo(MedicalTestCategory::class/*, 'category_id'*/)->withDefault();
     }
 }

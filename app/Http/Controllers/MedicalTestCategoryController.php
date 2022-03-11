@@ -18,7 +18,7 @@ class MedicalTestCategoryController extends Controller
 
     public function show(MedicalTestCategory $medicalTestCategory)
     {
-        $records = $medicalTestCategory->medicalTests()->get();
+        $records = $medicalTestCategory->medicalTests()->paginate(7, ['title', 'slug']);
 
         return view('medical_test_category.show', [
             'records' => $records

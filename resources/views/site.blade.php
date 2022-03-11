@@ -6,11 +6,12 @@
     <meta charset="utf-8">
 
     <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="keywords" content="$OVERALL_KEYWORDS"/>
     <meta name="description" content="$OVERALL_DESCRIPTION"/>
 
-    <meta name="Copyright" content="&copy; 2009 {{ env('APP_NAME') }}"/>
+    <meta name="Copyright" content="&copy; 2022 {{ env('APP_NAME') }}"/>
     <meta name="reply-to" content="office@startsanatate.ro"/>
 
     <meta name="Rating" content="General"/>
@@ -28,6 +29,9 @@
     <link rel="stylesheet" href="/css/autosuggest_inquisitor.css" type="text/css"/>
     <!--[if IE]>
     <link rel="stylesheet" href="/css/ie.css" type="text/css"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
     <![endif]-->
 
     <link rel="shortcut icon" href="/favicon.ico"/>
@@ -94,8 +98,12 @@
 <div id="wrapper">
 
     <div id="header">
-        <div style="text-align:center; float:left; padding:10px;"><a href="/"><img src="/img/logo.png"
-                                                                                   alt="StartSanatate"/></a></div>
+        <div style="text-align:center; float:left; padding:10px;">
+            <a href="/">
+                {{--           <img src="/img/logo.png" alt="StartSanatate"/>--}}
+                #logo
+            </a>
+        </div>
         <div style="text-align:center; float:right; padding-right:10px; background-color: #6b7280">
             #Top banner
         </div>
