@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MedicalTest extends Model
+class MedicalTestCategory extends Model
 {
     use HasFactory;
-
-    //protected $table = 'analize_medicale_all';
-
-    protected $guarded = [];
 }
