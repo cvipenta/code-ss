@@ -11,10 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/reset.css', 'public/css')
-    .postCss('resources/css/layout.css', 'public/css')
-    .postCss('resources/css/type.css', 'public/css')
-    .postCss('resources/css/thickbox.css', 'public/css')
-    .postCss('resources/css/autosuggest_inquisitor.css', 'public/css')
-;
+mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+]);
