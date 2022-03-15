@@ -29,10 +29,12 @@
     <link rel="stylesheet" href="/css/autosuggest_inquisitor.css" type="text/css"/>
     <!--[if IE]>
     <link rel="stylesheet" href="/css/ie.css" type="text/css"/>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    </head>
     <![endif]-->
+
+    <!-- Latest compiled and minified CSS -->
+{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">--}}
+
+    </head>
 
     <link rel="shortcut icon" href="/favicon.ico"/>
 
@@ -112,10 +114,11 @@
     @php
         $topLinks = [
             ['/', 'prima pagina'],
-            ['/dictionar-medical.html', 'dictionar medical'],
-            ['/dictionar-medicamente.html', 'dictionar medicamente'],
-            ['/articole-medicale.html', 'articole medicale'],
-            ['/articole-medicale-rss.html', 'articole rss'],
+            ['/analize-medicale.html', 'analize medicale'],
+            //['/dictionar-medical.html', 'dictionar medical'],
+            //['/dictionar-medicamente.html', 'dictionar medicamente'],
+            //['/articole-medicale.html', 'articole medicale'],
+            //['/articole-medicale-rss.html', 'articole rss'],
             ['/contact.html', 'contact'],
         ];
     @endphp
