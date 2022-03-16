@@ -31,6 +31,11 @@ Route::get('/articole-medicale.html', [Articole::class, 'index']);
 Route::get('/articole-medicale-rss.html', [ArticoleRss::class, 'index']);
 Route::get('/contact.html', [Contact::class, 'index']);
 
+Route::get('/analize-medicale', [MedicalTestCategoryController::class, 'index'])->name('analize-medicale.all');
+Route::get('/analize-medicale.html', [MedicalTestCategoryController::class, 'index'])->name('analize-medicale.all');
+Route::get('/analize-medicale/{medicalTestCategory:slug}.html', [MedicalTestCategoryController::class, 'show'])->name('analize-medicale.category');
+
+Route::get('/analize-medicale-explicate/{medicalTest:slug}.html', [MedicalTestController::class, 'show'])->name('analize-medicale.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
