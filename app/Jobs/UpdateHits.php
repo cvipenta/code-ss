@@ -37,8 +37,12 @@ class UpdateHits implements ShouldQueue
     public function handle()
     {
         $this->medicalTest->hits += 1;
-
         $this->medicalTest->save();
+
+        dump([
+            $this->medicalTest->hits,
+            $this->medicalTest->getChanges(),
+        ]);
     }
 
     /**

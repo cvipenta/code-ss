@@ -1,7 +1,8 @@
 # Development tips
 **Inspiration**
-https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/
-https://github.com/JeffreyWay/Laravel-From-Scratch-Blog-Project
+ - https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/
+ - https://github.com/JeffreyWay/Laravel-From-Scratch-Blog-Project
+ - [converting-a-legacy-app-to-laravel](https://tighten.com/blog/converting-a-legacy-app-to-laravel/)
 
 **Generate migrations for existing db**
 
