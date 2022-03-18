@@ -11,34 +11,36 @@ use Illuminate\Support\Facades\Redis;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/redis/pipeline', function () {
+Route::prefix('redis')->group(function () {
+    Route::get('/pipeline', function () {
 
-    Redis::pipeline(function ($pipe) {
-        for ($i = 0; $i < 10; $i++) {
-            $pipe->set("cvi-key:$i", $i);
-        }
+        Redis::pipeline(function ($pipe) {
+            for ($i = 0; $i < 10; $i++) {
+                $pipe->set("cvi-key:$i", $i);
+            }
+        });
+
     });
 
-});
+    Route::get('/publish', function () {
 
-Route::get('/redis/publish', function () {
+        Redis::publish('test-channel', json_encode([
+            'name' => 'Cristian Visan',
+            'age' => 40,
+            'time' => now()
+        ]));
 
-    Redis::publish('test-channel', json_encode([
-        'name' => 'Cristian Visan',
-        'age' => 40,
-        'time' => now()
-    ]));
+        echo 'OK';
+    });
 
-    echo 'OK';
-});
+    Route::get('/publish-2', function () {
 
-Route::get('/redis/publish2', function () {
+        Redis::publish('users.profile', json_encode([
+            'name' => 'Cristian Visan',
+            'age' => 40,
+            'time' => now()
+        ]));
 
-    Redis::publish('users.profile', json_encode([
-        'name' => 'Cristian Visan',
-        'age' => 40,
-        'time' => now()
-    ]));
-
-    echo 'OK';
+        echo 'OK';
+    });
 });
