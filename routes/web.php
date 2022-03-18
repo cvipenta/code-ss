@@ -37,9 +37,6 @@ Route::get('/analize-medicale/{medicalTestCategory:slug}.html', [MedicalTestCate
 
 Route::get('/analize-medicale-explicate/{medicalTest:slug}.html', [MedicalTestController::class, 'show'])->name('analize-medicale.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+require __DIR__.'/dashboard.php';
 require __DIR__.'/auth.php';
 require __DIR__.'/learn-about-redis.php';
