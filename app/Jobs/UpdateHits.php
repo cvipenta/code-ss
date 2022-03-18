@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\MedicalTest;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,17 +15,15 @@ class UpdateHits implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public MedicalTest $medicalTest;
-    private string $theSecondArgument;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(MedicalTest $medicalTest, string $theSecondArgument)
+    public function __construct(MedicalTest $medicalTest)
     {
         $this->medicalTest = $medicalTest;
-        $this->theSecondArgument = $theSecondArgument;
     }
 
     /**
@@ -38,11 +35,6 @@ class UpdateHits implements ShouldQueue
     {
         $this->medicalTest->hits += 1;
         $this->medicalTest->save();
-
-        dump([
-            $this->medicalTest->hits,
-            $this->medicalTest->getChanges(),
-        ]);
     }
 
     /**
