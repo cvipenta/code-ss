@@ -9,11 +9,11 @@ class MedicalTestController extends Controller
 {
     public function show(MedicalTest $medicalTest)
     {
-        UpdateHits::dispatch($medicalTest, 'theSecondArgument')
+        UpdateHits::dispatch($medicalTest)
             ->onConnection('redis')
             ->onQueue('medical_test.hits');
 
-        return view('medical_test.show', [
+        return view('site.medical_test.show', [
             'record' => $medicalTest
         ]);
     }

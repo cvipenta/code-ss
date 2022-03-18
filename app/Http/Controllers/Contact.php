@@ -8,7 +8,7 @@ class Contact extends Controller
 {
     public function index()
     {
-        return view('contact.index', [
+        return view('site.contact.index', [
             'controller' => __CLASS__
         ]);
     }

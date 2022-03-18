@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMedicalTestCategoryRequest;
-use App\Http\Requests\UpdateMedicalTestCategoryRequest;
 use App\Models\MedicalTestCategory;
 
 class MedicalTestCategoryController extends Controller
@@ -11,7 +9,7 @@ class MedicalTestCategoryController extends Controller
 
     public function index()
     {
-        return view('medical_test_category.index', [
+        return view('site.medical_test_category.index', [
             'categories' => MedicalTestCategory::all()
         ]);
     }
@@ -20,63 +18,8 @@ class MedicalTestCategoryController extends Controller
     {
         $records = $medicalTestCategory->medicalTests()->paginate(7, ['title', 'slug']);
 
-        return view('medical_test_category.show', [
+        return view('site.medical_test_category.show', [
             'records' => $records
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMedicalTestCategoryRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreMedicalTestCategoryRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MedicalTestCategory  $medicalTestCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(MedicalTestCategory $medicalTestCategory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMedicalTestCategoryRequest  $request
-     * @param  \App\Models\MedicalTestCategory  $medicalTestCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateMedicalTestCategoryRequest $request, MedicalTestCategory $medicalTestCategory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\MedicalTestCategory  $medicalTestCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(MedicalTestCategory $medicalTestCategory)
-    {
-        //
     }
 }

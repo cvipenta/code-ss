@@ -8,7 +8,7 @@ class Homepage extends Controller
 {
     public function index()
     {
-        return view('homepage.index', [
+        return view('site.homepage.index', [
             'controller' => __CLASS__
         ]);
     }

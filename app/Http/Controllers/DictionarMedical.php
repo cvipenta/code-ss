@@ -6,7 +6,7 @@ class DictionarMedical extends Controller
 {
     public function index()
     {
-        return view('dictionar_medical.index', [
+        return view('site.dictionar_medical.index', [
             'controller' => __CLASS__
         ]);
     }
