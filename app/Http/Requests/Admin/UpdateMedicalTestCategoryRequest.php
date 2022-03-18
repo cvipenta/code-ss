@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMedicalTestCategoryRequest extends FormRequest
+class UpdateMedicalTestCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
