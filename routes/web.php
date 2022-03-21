@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // temporary routes
-Route::get('/', [Homepage::class, 'index']);
+Route::get('/', [Homepage::class, 'index'])->name('homepage');
 
 Route::get('/dictionar-medical.html', [DictionarMedical::class, 'index']);
 Route::get('/dictionar-medicamente.html', [DictionarMedicamente::class, 'index']);

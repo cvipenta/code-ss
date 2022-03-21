@@ -15,6 +15,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('medical-test-categories.index')" :active="request()->routeIs('medical-test-categories.index')">
+                        {{ __('Medical Test Category') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('homepage')" target="_blank">
+                        {{ __('back to site') }}
+                    </x-nav-link>
                 </div>
             </div>
 

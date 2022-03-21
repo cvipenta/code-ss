@@ -17,6 +17,8 @@ class MedicalTestCategory extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     /**
      * Get the comments for the blog post.
      */

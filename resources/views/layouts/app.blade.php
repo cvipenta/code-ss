@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="https://cdn.tailwindcss.com"></script>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -29,7 +30,26 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+
+                <div class="py-12">
+                    @if(session("success"))
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-1">
+                            <div class="px-4 py-3 leading-normal text-green-700 bg-green-300 rounded-lg" role="alert">
+                                {{session("success")}}
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(session("error"))
+                        <div class="max-w-7xl mx-auto sm:px-4 lg:px-8 my-1">
+                            <div class="px-4 py-3 leading-normal text-red-100 bg-red-300 rounded-lg" role="alert">
+                                <p>{{session("error")}}</p>
+                            </div>
+                        </div>
+                    @endif
+
+                    {{ $slot }}
+                </div>
             </main>
         </div>
     </body>
