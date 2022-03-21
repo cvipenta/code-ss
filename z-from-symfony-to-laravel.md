@@ -75,7 +75,6 @@ Currently, at https://laravel.com/docs/9.x
 **About Artisan and console commands**
 - arguments and options in signature 
 
-
 **About Database and Eloquent ORM**
 - use `php artisan migration:*` console commands (up, down, rollback, fresh)
 - make the first queries in controllers
@@ -115,6 +114,19 @@ Attend the courses below and read the documentation related:
 
 2. Using Laravel **Cache** with **filesystem** and **Redis**
 
+**About collections**
+- great collection of tools to work with collections
+
+**About contracts**
+- same approach with sf 4+ - interfaces typehint to services in container
+- may have corresponding facades
+
+**About events**
+<font color="red">**TODO more**</font>
+
+**About broadcasting**
+
+<font color="red">**TODO next**</font>
 
 
 
