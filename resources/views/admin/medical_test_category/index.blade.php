@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <span class="font-semibold text-xl text-gray-800 leading-tight items-start">
             {{ __('Medical Test Category') }}
-        </h2>
+        </span>
 
-        <a href="{{ route('medical-test-categories.create') }}">
+        <a href="{{ route('medical-test-categories.create') }}" class="justify-end">
             <button
-                class="bg-blue-900 hover:bg-blue-700 text-white font-semibold py-1 px-2 border border-blue-500 rounded">
-                Add new
+                class="bg-blue-900 hover:bg-blue-700 text-white font-semibold py-1 px-2 border border-blue-500 rounded float-right">
+                + Add new
             </button>
         </a>
     </x-slot>
