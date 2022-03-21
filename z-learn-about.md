@@ -16,8 +16,8 @@ Amazon Simple Notification Service
 ##1.C. Data Dog or similar tools (Kibana or NewRelic)
 [https://www.datadoghq.com/product/error-tracking/](https://www.datadoghq.com/product/error-tracking/)
 
-#2. OWASP top 10
-
+##2. <font color="red">OWASP top 10</font>
+Top 10:
    - A01 Broken Access Control (https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
    - A02 Cryptographic Failures
    - A03 Injection
@@ -29,9 +29,14 @@ Amazon Simple Notification Service
    - A09 Security Logging and Monitoring Failures
    - A10 Server Side Request Forgery (SSRF)
 
+Next:
    - Code Quality issues
    - Denial of Service
    - Memory Management Errors 
+
+**Tools**:
+* https://www.zaproxy.org/
+
 
 #3. Laravel service provider
  - AppServiceProvider
