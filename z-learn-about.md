@@ -1,11 +1,11 @@
-##1.A. Queues (redis or kafka)
+##1. Queues (redis or kafka)
  * Read about `event driven architecture`
  * AWS event driven arch
 
 [https://aws.amazon.com/event-driven-architecture/](https://aws.amazon.com/event-driven-architecture/)
 Amazon Simple Notification Service
 
-##1.B. LOCK and MUTEX
+##2. LOCK and MUTEX
  * read about lock types (lock, mutex, semaphore)
 
 [https://laravel.com/docs/9.x/cache#atomic-locks](https://laravel.com/docs/9.x/cache#atomic-locks)
@@ -13,10 +13,10 @@ Amazon Simple Notification Service
 
 [https://symfony.com/doc/current/components/lock.html](https://symfony.com/doc/current/components/lock.html)
 
-##1.C. Data Dog or similar tools (Kibana or NewRelic)
+##3. Data Dog or similar tools (Kibana or NewRelic)
 [https://www.datadoghq.com/product/error-tracking/](https://www.datadoghq.com/product/error-tracking/)
 
-##2. <font color="red">OWASP top 10</font>
+##4. <font color="red">OWASP top 10</font>
 Top 10:
    - A01 Broken Access Control (https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
    - A02 Cryptographic Failures
@@ -38,23 +38,28 @@ Next:
 * https://www.zaproxy.org/
 
 
-#3. Laravel service provider
- - AppServiceProvider
- - read about differences between boot() and register()
-
-#4. Unit tests - dataProvider
-Se fac teste unitare la tot codul, la git push se ruleaza suita de teste
-
-#5. Laravel Middleware in general
-
-##6. How `https` works
+##5. How `https` works
 [https://www.thesslstore.com/blog/how-does-https-work/](https://www.thesslstore.com/blog/how-does-https-work/)
 
-#7. SOLID
+#6. SOLID
 
-#8. DESIGN PATTERNS
+#7. DESIGN PATTERNS
 factory, decorator, facade, singleton, observer
 
-#9. Php library `Money`
+##8. Php library `Money`
+Documentation: https://www.moneyphp.org/en/stable/
+    
+`composer require moneyphp/money`
 
-#10. REST verbs
+
+##9. REST verbs
+https://medium.com/@pawanpiumal1/common-http-verbs-in-restful-web-services-b517c90637bb
+
+#10. Laravel service provider
+- AppServiceProvider
+- read about differences between boot() and register()
+
+##11. Unit tests - dataProvider
+Se fac teste unitare la tot codul, la git push se ruleaza suita de teste
+
+#12. Laravel Middleware in general
