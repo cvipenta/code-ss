@@ -72,6 +72,10 @@ Currently, at https://laravel.com/docs/9.x
 
 ## Digging deeper
 
+**About Artisan and console commands**
+- arguments and options in signature 
+
+
 **About Database and Eloquent ORM**
 - use `php artisan migration:*` console commands (up, down, rollback, fresh)
 - make the first queries in controllers
