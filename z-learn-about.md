@@ -41,12 +41,17 @@ Next:
 ##5. How `https` works
 [https://www.thesslstore.com/blog/how-does-https-work/](https://www.thesslstore.com/blog/how-does-https-work/)
 
-#6. SOLID
+##6. SOLID
 https://laracasts.com/series/solid-principles-in-php
 
 
-#7. DESIGN PATTERNS
-factory, decorator, facade, singleton, observer
+##7. DESIGN PATTERNS
+**creational**: factory method, singleton, prototype, builder
+
+**structural**: decorator, adapter, facade, bridge
+
+**behavioral**: observer, strategy, template, Chain of responsibility, command
+
 https://laracasts.com/series/design-patterns-in-php
 
 ##8. Php library `Money`
