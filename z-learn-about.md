@@ -42,24 +42,31 @@ Next:
 [https://www.thesslstore.com/blog/how-does-https-work/](https://www.thesslstore.com/blog/how-does-https-work/)
 
 #6. SOLID
+https://laracasts.com/series/solid-principles-in-php
+
 
 #7. DESIGN PATTERNS
 factory, decorator, facade, singleton, observer
+https://laracasts.com/series/design-patterns-in-php
 
 ##8. Php library `Money`
 Documentation: https://www.moneyphp.org/en/stable/
     
 `composer require moneyphp/money`
 
-
 ##9. REST verbs
 https://medium.com/@pawanpiumal1/common-http-verbs-in-restful-web-services-b517c90637bb
 
-#10. Laravel service provider
+##10. Laravel service provider
 - AppServiceProvider
 - read about differences between boot() and register()
+  - The **register()** method is where you should add bindings to the service container. 
+  - The **boot()** method is for performing actions after all service providers have registered their services.
+
+Best answer: https://laracasts.com/discuss/channels/general-discussion/difference-between-boot-and-register-method?reply=4507
 
 ##11. Unit tests - dataProvider
 Se fac teste unitare la tot codul, la git push se ruleaza suita de teste
 
-#12. Laravel Middleware in general
+##12. Laravel Middleware in general
+https://laravel.com/docs/9.x/middleware
