@@ -46,11 +46,12 @@ https://laracasts.com/series/solid-principles-in-php
 
 
 **7. DESIGN PATTERNS**
-**creational**: factory method, singleton, prototype, builder
 
-**structural**: decorator, adapter, facade, bridge
-
-**behavioral**: observer, strategy, template, Chain of responsibility, command
+---
+**creational**: factory method, singleton, prototype, builder  
+**structural**: decorator, adapter, facade, bridge  
+**behavioral**: observer, strategy, template, Chain of responsibility, command  
+---
 
 https://laracasts.com/series/design-patterns-in-php
 
