@@ -131,12 +131,12 @@ Adapter is a structural design pattern that allows objects with incompatible int
 
 ### *BRIDGE
 
-###COMPOSITE
+### COMPOSITE
 Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
 
-Examples: syfmony forms, product / combos
+Examples: Symfony forms, product / combos
 
-###DECORATOR or Wrapper 
+### DECORATOR or Wrapper 
 https://refactoring.guru/design-patterns/decorator
 https://refactoring.guru/design-patterns/decorator/php/example
 https://betterprogramming.pub/decorator-c04fae63dfff

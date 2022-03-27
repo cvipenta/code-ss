@@ -19,7 +19,7 @@ Amazon Simple Notification Service
 ##4. <font color="red">OWASP top 10</font>
 Top 10:
    - A01 Broken Access Control (https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-   - A02 Cryptographic Failures
+   - A02 Cryptographic Failures (Sensitive Data Exposure)
    - A03 Injection
    - A04 Insecure Design
    - A05 Security Misconfiguration
