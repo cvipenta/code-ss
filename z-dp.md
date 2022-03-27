@@ -137,9 +137,9 @@ Composite is a structural design pattern that lets you compose objects into tree
 Examples: Symfony forms, product / combos
 
 ### DECORATOR or Wrapper 
-https://refactoring.guru/design-patterns/decorator
-https://refactoring.guru/design-patterns/decorator/php/example
-https://betterprogramming.pub/decorator-c04fae63dfff
+https://refactoring.guru/design-patterns/decorator  
+https://refactoring.guru/design-patterns/decorator/php/example  
+https://betterprogramming.pub/decorator-c04fae63dfff  
 
 > Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
 
