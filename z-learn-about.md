@@ -16,18 +16,39 @@ Amazon Simple Notification Service
 **3. Data Dog or similar tools (Kibana or NewRelic)**
 [https://www.datadoghq.com/product/error-tracking/](https://www.datadoghq.com/product/error-tracking/)
 
-**4. <font color="red">OWASP top 10</font>**  
+**4. OWASP Top 10 2021**  
 Top 10: 
-   - A01 Broken Access Control (https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-   - A02 Cryptographic Failures (Sensitive Data Exposure)
-   - A03 Injection
-   - A04 Insecure Design
-   - A05 Security Misconfiguration
-   - A06 Vulnerable and Outdated Components
-   - A07 Identification and Authentication Failures
-   - A08 Software and Data Integrity Failures
-   - A09 Security Logging and Monitoring Failures
-   - A10 Server Side Request Forgery (SSRF)
+> **A01 Broken Access Control** (https://owasp.org/Top10/A01_2021-Broken_Access_Control/) 
+
+> **A02 Cryptographic Failures** (Sensitive Data Exposure)
+
+> **A03 Injection**  
+    CWE-79: Cross-site Scripting  
+    CWE-89: SQL Injection  
+    CWE-73: External Control of File Name or Path
+
+> **A04 Insecure Design**
+
+> **A05 Security Misconfiguration**
+
+> **A06 Vulnerable and Outdated Components**
+
+> **A07 Identification and Authentication Failures** (Broken Authentication)  
+    CWE-297: Improper Validation of Certificate with Host Mismatch  
+    CWE-287: Improper Authentication  
+    CWE-384: Session Fixation  
+
+> **A08 Software and Data Integrity Failures**
+
+> **A09 Security Logging and Monitoring Failures**  
+    CWE-778 Insufficient Logging  
+    CWE-117 Improper Output Neutralization for Logs  
+    CWE-223 Omission of Security-relevant Information  
+    CWE-532 Insertion of Sensitive Information into Log File
+
+> **A10 Server Side Request Forgery (SSRF)**
+
+
 \
 Next:
    - Code Quality issues
