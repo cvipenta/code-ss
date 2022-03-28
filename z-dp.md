@@ -214,7 +214,7 @@ All components (called Colleague) are only coupled to the Mediator interface and
 
 **Identification:** State pattern can be recognized by methods that change their behavior depending on the objects’ state, controlled externally.
 
-### STARTEGY
+### STRATEGY
 
 ### TEMPLATE METHOD
 
