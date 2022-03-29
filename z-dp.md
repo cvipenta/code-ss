@@ -48,7 +48,7 @@ Most of these design patterns are specifically concerned with communication betw
 **Memento** provides the ability to restore an object to its previous state (undo).<br>
 **Observer** is a publish/subscribe pattern, which allows a number of observer objects to see an event.<br>
 **State** allows an object to alter its behavior when its internal state changes.<br>
-**Strategy** allows one of a family of algorithms to be selected on-the-fly at runtime.<br>
+**Strategy** allows one family of algorithms to be selected on-the-fly at runtime.<br>
 **Template method** defines the skeleton of an algorithm as an abstract class, allowing its subclasses to provide concrete behavior.<br>
 
 **Visitor** separates an algorithm from an object structure by moving the hierarchy of methods into one object.
@@ -59,11 +59,11 @@ http://elf.cs.pub.ro/poo/laboratoare/visitor#visitor
 ## A. CREATIONAL
 
 ### FACTORY METHOD
-> Factory method is a creational design pattern which solves the problem of creating product objects without specifying their concrete classes.
-<br>Factory Method defines a method, which should be used for creating objects instead of direct constructor call (new operator). Subclasses can override this method to change the class of objects that will be created.
+> Factory method is a creational design pattern which solves the problem of creating type objects without specifying their concrete classes.\
+  Factory Method defines a method, which should be used for creating objects instead of direct constructor call (new operator). Subclasses can override this method to change the class of objects that will be created.
 
-- Define an interface for creating an object, but let the subclasses decide which class to instanciate.
-  The Factory method delegates the real instanciation to subclasses
+- Define an interface for creating an object, but let the subclasses decide which class to instantiate.
+  The Factory method delegates the real instantiation to subclasses
 - produces one single type of objects (implementing the same interface)
 
 
@@ -107,8 +107,9 @@ http://elf.cs.pub.ro/poo/laboratoare/visitor#visitor
 ### PROTOTYPE
 Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
 
+- It's mainly a `clone HeavyInstanciatedClass` thing
 - Not used so much in php, Symfony HttpFoundation Request::duplicate()
-- It's mainly a ``clone HeavyInstanciatedClass`` thing
+- Usually defines a method __clone() to treat the clone behaviour (eg: circular reference etc.)
 
 ### SINGLETON
 Singleton is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
@@ -124,7 +125,7 @@ and of course private/protected `__contructor` and inhibited `__clone` or `__wak
 ### ADAPTER
 Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
 
-**Applicability**<br>
+**Applicability**  
 - Use the Adapter class when you want to use some existing class, but its interface isn’t compatible with the rest of your code.
 - The Adapter pattern lets you create a middle-layer class that serves as a translator between your code and a legacy class, a 3rd-party class or any other class with a weird interface.
 - Use the pattern when you want to reuse several existing subclasses that lack some common functionality that can’t be added to the superclass.
@@ -143,7 +144,7 @@ https://betterprogramming.pub/decorator-c04fae63dfff
 
 > Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
 
-**Applicability**<br>
+**Applicability**  
 - Use the Decorator pattern when you need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects.
 - The Decorator lets you structure your business logic into layers, create a decorator for each layer and compose objects with various combinations of this logic at runtime. The client code can treat all these objects in the same way, since they all follow a common interface.
 - Use the pattern when it’s awkward or not possible to extend an object’s behavior using inheritance. 
@@ -185,10 +186,13 @@ https://betterprogramming.pub/decorator-c04fae63dfff
 ### COMMAND
 > Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.
 
-### INTERPRETER (not GoF)
-
-
 ### ITERATOR 
+**Usage examples:** The pattern is very common in PHP code. Many frameworks and libraries use it to provide a standard way for traversing their collections.
+
+The PHP has a built-in **Iterator** interfaces that can be used for building custom iterators compatible with the rest of the PHP code.
+
+**Identification:** Iterator is easy to recognize by the navigation methods (such as next, previous and others). Client code that uses iterators might not have direct access to the collection being traversed (also implementing Traversable interface).
+
 
 ### MEDIATOR
 > Mediator is a behavioral design pattern that lets you reduce chaotic dependencies between objects. The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
@@ -199,6 +203,9 @@ All components (called Colleague) are only coupled to the Mediator interface and
 ### MEMENTO
 
 ### OBSERVER
+**Usage examples:** PHP has several built-in interfaces (SplSubject, SplObserver) that can be used to make your implementations of the Observer pattern compatible with the rest of the PHP code.
+
+**Identification:** The pattern can be recognized by subscription methods, that store objects in a list and by calls to the update method issued to objects in that list.
 
 ### STATE
 > State is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
@@ -215,7 +222,12 @@ All components (called Colleague) are only coupled to the Mediator interface and
 **Identification:** State pattern can be recognized by methods that change their behavior depending on the objects’ state, controlled externally.
 
 ### STRATEGY
+**Usage examples:** The Strategy pattern is often used in PHP code, especially when it’s necessary to switch algorithms at runtime. However, the pattern has a strong competitor represented by anonymous functions, introduced in PHP 5.3 in 2009.
+
+**Identification:** Strategy pattern can be recognized by a method that lets nested object do the actual work, as well as the setter that allows replacing that object with a different one.
 
 ### TEMPLATE METHOD
+Template Method is a behavioral design pattern that allows you to defines a skeleton of an algorithm in a base class and let subclasses override the steps without changing the overall algorithm’s structure.
+
 
 ### VISITOR
