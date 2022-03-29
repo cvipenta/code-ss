@@ -18,7 +18,10 @@ Amazon Simple Notification Service
 
 **4. OWASP Top 10 2021**  
 Top 10: 
-> **A01 Broken Access Control** (https://owasp.org/Top10/A01_2021-Broken_Access_Control/) 
+> **A01 Broken Access Control** (https://owasp.org/Top10/A01_2021-Broken_Access_Control/)  
+    CWE-200: Exposure of Sensitive Information to an Unauthorized Actor  
+    CWE-201: Exposure of Sensitive Information Through Sent Data  
+    CWE-352: Cross-Site Request Forgery  
 
 > **A02 Cryptographic Failures** (Sensitive Data Exposure)
 
@@ -63,8 +66,26 @@ Next:
 [https://www.thesslstore.com/blog/how-does-https-work/](https://www.thesslstore.com/blog/how-does-https-work/)
 
 **6. SOLID**
-https://laracasts.com/series/solid-principles-in-php
+    https://laracasts.com/series/solid-principles-in-php
 
+SOLID in simple words:
+
+> **S** A class should have one and only one reason to change, meaning that a class should have only one job.  
+    Write classes so that your code "fits in your head".
+
+> **O** Objects or entities should be open for extension but closed for modification.  
+> Design your classes so that you can change their behavior without changing their code.
+
+> **L** Every subclass or derived class should be substitutable for their base or parent class.
+> If a class extends a base class or implements an interface, make your class behave like it is supposed to.
+
+> **I** A client should never be forced to implement an interface that it doesn’t use, or clients shouldn’t be forced to depend on methods they do not use.  
+> If a class has a large interface - so a lot of methods - and you often inject the class and only use some of these methods - consider splitting your class into smaller pieces.
+
+> **D** 1. High level modules should not depend on low level modules, both should depend on abstractions - for example, interfaces. 2. Abstractions should not depend on details. Details - meaning concrete implementations - should depend on abstractions.
+> - Classes should depend on interfaces instead of concrete classes.
+> - Those interfaces should be designed by the class that uses them, not by the classes that will implement them.     
+> Prefer type-hinting interfaces and allow each interface to be designed for the "high level" class that will use it, instead of for the low-level class that will implement it.
 
 **7. DESIGN PATTERNS**
 
