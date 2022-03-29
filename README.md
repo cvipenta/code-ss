@@ -38,5 +38,6 @@ https://help.hcltechsw.com/onetest/hclonetestperformance/10.1/com.ibm.rational.t
 
 
 # Miscellaneous
-    git config --global user.email "email@domain.com"
     git config --global user.name "Firstname Lastname"
+    git config --global user.email "email@domain.com"
+
