@@ -21,8 +21,8 @@ An abstract class can implement part of an interface letting the child class to 
 
 
 # hashing vs. encryption
-Encryption is two-way, the data can be decrypted, so it is readable again. 
-Hashing, on the other hand, is one-way, meaning the plaintext is scrambled into a unique digest, through the use of a salt, that cannot be decrypted.
+**Encryption** is two-way, the data can be decrypted, so it is readable again.   
+**Hashing**, on the other hand, is one-way, meaning the plaintext is scrambled into a unique digest, through the use of a salt, that cannot be decrypted.
 
 
 **Asymmetric** encryption uses two different keys, a public and private key, for encryption and decryption. The private key is used to encrypt data, and is kept a secret from everyone but the person encrypting the data. 
