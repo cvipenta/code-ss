@@ -44,14 +44,14 @@ hashing:
 
 
 # PHP Standards
-https://www.php-fig.org/psr/psr-4/
+https://www.php-fig.org/psr/psr-4/  
 https://www.php-fig.org/psr/psr-12/  
 
 
-# ce este dependency injection
-# despre debug - ca se poate folosi x debug 
+# what is dependency injection
+# xdebug 
 
-# php 8 what's new
+# What's new in php 8
 - union types
 - nullsafe operator
 - named arguments
