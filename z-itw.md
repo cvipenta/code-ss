@@ -1,6 +1,7 @@
 
 # interface vs abstract
 
+```
 Interface Class                                         | Abstract Class 
 
 Interface class supports multiple inheritance feature   | Abstract class does not support multiple inheritances.
@@ -18,18 +19,25 @@ class does not have access modifiers by default.
 Any member of an interface cannot be static.            | Only a complete member of the abstract class can be static.
 
 An abstract class can implement part of an interface letting the child class to implement the rest
-
+```
 
 # hashing vs. encryption
-**Encryption** is two-way, the data can be decrypted, so it is readable again.   
-**Hashing**, on the other hand, is one-way, meaning the plaintext is scrambled into a unique digest, through the use of a salt, that cannot be decrypted.
+In cryptography, encryption is the process of encoding information. 
+This process converts the original representation of the information, known as plaintext, into an alternative form known as ciphertext. 
+Ideally, only authorized parties can decipher a ciphertext back to plaintext and access the original information. 
+
+**Encryption** is two-way process, the data can be decrypted, so it is readable again.   
+**Hashing**, on the other hand, is one-way process, meaning the plaintext is scrambled into a unique digest, through the use of a salt, that cannot be decrypted.
 
 
-**Asymmetric** encryption uses two different keys, a public and private key, for encryption and decryption. The private key is used to encrypt data, and is kept a secret from everyone but the person encrypting the data. 
+**Asymmetric** encryption uses two different keys, a public and private key, for encryption and decryption. 
+The private key is used to encrypt data, and is kept a secret from everyone but the person encrypting the data. 
 The public key is available for anyone, and is used for decryption. 
-Using asymmetric encryption, the authenticity of the data can be verified, because if the data was modified in transit, it would not be able to be re-encrypted with the private key. 
+Using asymmetric encryption, the authenticity of the data can be verified, because if the data was modified in transit, 
+it would not be able to be re-encrypted with the private key. 
 
-**Symmetric** encryption uses the same key for both encryption and decryption. This type of encryption uses less processing power and is faster, but is less secure as only one key is used.
+**Symmetric** encryption uses the same key for both encryption and decryption. 
+This type of encryption uses less processing power and is faster, but is less secure as only one key is used.
 
 symmetric: AES256
 asymmetric: RSA
@@ -49,7 +57,14 @@ https://www.php-fig.org/psr/psr-12/
 
 
 # what is dependency injection
+Dependency injection is a procedure where one object supplies the dependencies of another object. 
+Dependency Injection is a software design approach that allows avoiding hard-coding dependencies 
+and makes it possible to change the dependencies both at runtime and compile time
+
+https://www.amitmerchant.com/this-is-why-php-dont-have-multiple-inheritance/
+
 # xdebug 
+https://craftquest.io/courses/debugging-with-xdebug/35871
 
 # What's new in php 8
 - union types
