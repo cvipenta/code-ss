@@ -59,9 +59,11 @@ https://www.php-fig.org/psr/psr-12/
 # what is dependency injection
 Dependency injection is a procedure where one object supplies the dependencies of another object. 
 Dependency Injection is a software design approach that allows avoiding hard-coding dependencies 
-and makes it possible to change the dependencies both at runtime and compile time
+and makes it possible to change the dependencies both at runtime and compile time  
 
-https://www.amitmerchant.com/this-is-why-php-dont-have-multiple-inheritance/
+https://www.amitmerchant.com/this-is-why-php-dont-have-multiple-inheritance/  
+
+https://www.php-fig.org/psr/psr-11/  
 
 # xdebug 
 https://craftquest.io/courses/debugging-with-xdebug/35871

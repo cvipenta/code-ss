@@ -12,7 +12,8 @@ https://www.tutorialrepublic.com/php-tutorial/php-exception-handling.php
 
 # PSR - PHP standard recommendations 
 
-https://www.php-fig.org/psr/psr-1/
+https://www.php-fig.org/psr/psr-1/  
+https://www.php-fig.org/psr/psr-7/  
 
 
 # dbal doctrine
