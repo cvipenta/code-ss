@@ -65,6 +65,9 @@ https://www.amitmerchant.com/this-is-why-php-dont-have-multiple-inheritance/
 
 https://www.php-fig.org/psr/psr-11/  
 
+autowire: type-hint arguments of your services and the container will automatically pass you the correct arguments  
+autoconfigure: auto tag services based on interfaces that they implement  
+
 # xdebug 
 https://craftquest.io/courses/debugging-with-xdebug/35871
 
