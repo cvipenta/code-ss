@@ -2,6 +2,9 @@ migrate-fresh-seed:
 	php artisan migrate:fresh
 	php artisan db:seed
 
+cur:
+	php artisan migrate:fresh
+	php artisan db:seed --class=StudentSeeder
 
 #run from local
 ssh-web:
