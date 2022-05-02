@@ -1118,3 +1118,53 @@ function write_select($options_array, $current_option = null, $default_value = n
 
     return $result;
 }
+
+/**
+ * @param array $data_array
+ * @param array $array_headers
+ * @param array $array_style
+ *
+ * @return string
+ */
+function print_table(array $data_array, array $array_headers = [], array $array_style = []): string
+{
+    if (count($data_array) == 0) {
+        return '-';
+    }
+
+    $to_display = '<table ' . ($array_style['table'] ?? '') . '>';
+
+
+    if (count($array_headers) > 0) {
+        $to_display .= '<thead><tr ' . ($array_style['header'] ?? '') . '>';
+
+        $to_display .= '<th>#</th>';
+        foreach ($array_headers as $array_header) {
+            $to_display .= '<th>' . $array_header . '</th>';
+        }
+
+        $to_display .= '</tr></thead>';
+    }
+
+    $kr = 0;
+    $to_display .= '<tbody>';
+    foreach ($data_array as $one_row) {
+        $row_style = '';
+        if (isset($array_style['row'])) {
+            $row_style = $array_style['row'];
+        }
+
+        $to_display .= '<tr ' . $row_style . '>';
+        $to_display .= '<td>' . (++$kr) . '</td>';
+
+        foreach ($one_row as $array_content_key => $rc) {
+            $to_display .= '<td>' . $rc . '</td>';
+        }
+        $to_display .= '</tr>';
+    }
+    $to_display .= '</tbody>';
+
+    $to_display .= '</table>';
+
+    return $to_display;
+}
