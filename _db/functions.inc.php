@@ -88,13 +88,13 @@ function get_persoana_camera_pat_fast($id_camera, $id_pat)
 
     /* quick query */
     $q = "
-		SELECT 
-			cs_persoane.nume, 
-			cs_persoane.prenume, 
-			cs_persoane_camere.id_persoana, 
-			cs_persoane_camere.data_start, 
+		SELECT
+			cs_persoane.nume,
+			cs_persoane.prenume,
+			cs_persoane_camere.id_persoana,
+			cs_persoane_camere.data_start,
 			cs_persoane_camere.data_end
-		FROM cs_persoane_camere 
+		FROM cs_persoane_camere
 		INNER JOIN cs_persoane ON cs_persoane_camere.id_persoana = cs_persoane.id
 		WHERE 1
 		AND cs_persoane_camere.id_camera = {$id_camera}
@@ -121,11 +121,11 @@ function get_persoana_camera_pat($id_camera, $id_pat, $id_locatar = 0)
     /* quick query */
     if ($id_locatar == 0) {
         $q = "
-            SELECT 
-                cs_persoane.nume, 
-                cs_persoane.prenume, 
+            SELECT
+                cs_persoane.nume,
+                cs_persoane.prenume,
                 cs_persoane_camere.*
-            FROM cs_persoane_camere 
+            FROM cs_persoane_camere
             INNER JOIN cs_persoane ON cs_persoane_camere.id_persoana = cs_persoane.id
             AND cs_persoane_camere.id_camera = {$id_camera}
             AND cs_persoane_camere.nr_pat = {$id_pat}
@@ -134,7 +134,7 @@ function get_persoana_camera_pat($id_camera, $id_pat, $id_locatar = 0)
     } else {
         $q = "
 			SELECT cs_persoane.nume, cs_persoane.prenume, cs_persoane_camere.*
-			FROM cs_persoane_camere 
+			FROM cs_persoane_camere
 			INNER JOIN cs_persoane ON cs_persoane_camere.id_persoana = cs_persoane.id
 			AND cs_persoane.id = {$id_locatar}
 			AND cs_persoane_camere.status_activ IN (1, 2, 3)
@@ -227,11 +227,11 @@ function get_persoane_necazate()
     $lista_necazati = [];
 
     $q = "
-			SELECT id_persoana 
-			FROM cs_persoane_camere 
+			SELECT id_persoana
+			FROM cs_persoane_camere
 			WHERE 1
-			AND id_camera != '' 
-			AND (nr_pat != '' OR camera_integral != 0) 
+			AND id_camera != ''
+			AND (nr_pat != '' OR camera_integral != 0)
 			AND status_activ IN (1)";    //vor fi mai multe stari de cazare ale locatarului 1 -normal
 
     $r = $db->Execute($q);
@@ -276,11 +276,11 @@ function get_persoane_cazate()
     $lista_cazati = [];
 
     $q = "
-        SELECT id_persoana 
-        FROM cs_persoane_camere 
-        WHERE 1 
-        AND id_camera != '' 
-        AND (nr_pat != '' OR camera_integral != 0) 
+        SELECT id_persoana
+        FROM cs_persoane_camere
+        WHERE 1
+        AND id_camera != ''
+        AND (nr_pat != '' OR camera_integral != 0)
         AND status_activ IN (1, 2 ,3)
     ";
     $rs = (array)$db->GetArray($q);
@@ -292,8 +292,8 @@ function get_persoane_cazate()
     $ids_cazati = @implode(', ', $lista);
 
     $q1 = "
-        SELECT id, nume, prenume, nume_casatorie, init 
-        FROM cs_persoane WHERE id IN ($ids_cazati) /*AND activ=1*/  
+        SELECT id, nume, prenume, nume_casatorie, init
+        FROM cs_persoane WHERE id IN ($ids_cazati) /*AND activ=1*/
         ORDER BY nume ASC, prenume ASC
     ";
     $rs1 = (array)$db->GetAssoc($q1);
@@ -325,17 +325,17 @@ function get_camera_dupa_id($id, $extra)
     return ' (Etaj: ' . $result['etaj'] . ' - Camera: ' . $result['numar'] . ')';
 }
 
-// OLD FUNCTION	
+// OLD FUNCTION
 //function get_infocazare_idpersoana($id_persoana)
 //{
-//	// id-ul este cel din tabela cs_persoane si cel din tabela cs_persoane camere 
-//	
+//	// id-ul este cel din tabela cs_persoane si cel din tabela cs_persoane camere
+//
 //	global $db;
-//	
-//	$q = "SELECT * FROM cs_persoane_camere WHERE id_persoana=$id_persoana";	
-//	$r = $db->Execute($q); 
+//
+//	$q = "SELECT * FROM cs_persoane_camere WHERE id_persoana=$id_persoana";
+//	$r = $db->Execute($q);
 //	$result = $r->GetRowAssoc($toUpper=false);
-//	
+//
 //	return $result;
 //}
 
@@ -581,14 +581,14 @@ function get_taxa_corespunzatoare($tip_datorie, $tip_camera, $tip_persoana, $per
     $r = [];
 
     $q_taxa = "
-		SELECT * 
-		FROM camin_studentesc.cs_taxa 
+		SELECT *
+		FROM camin_studentesc.cs_taxa
 		WHERE 1
-		AND tip_taxa = {$tip_datorie} 
-		AND tip_camera = {$tip_camera} 
+		AND tip_taxa = {$tip_datorie}
+		AND tip_camera = {$tip_camera}
 		AND tip_persoana = {$tip_persoana}
 		AND data_val_min <= '" . $perioada[0] . "'
-		AND data_val_max >= '" . $perioada[1] . "' 
+		AND data_val_max >= '" . $perioada[1] . "'
     ";  //psql($q_taxa);// die;
 
     $db->SetFetchMode(ADODB_FETCH_ASSOC);
@@ -598,10 +598,10 @@ function get_taxa_corespunzatoare($tip_datorie, $tip_camera, $tip_persoana, $per
     if (is_array($result_taxa) && count($result_taxa) == 0) {
         /* daca nu am taxe stabilite in intervalul de cazare propus atunci iau taxa cea mai indepartata si o pun default*/
         $q_taxa_default = "
-            SELECT * 
-            FROM camin_studentesc.cs_taxa 
-            WHERE tip_taxa = $tip_datorie 
-            AND tip_camera = $tip_camera 
+            SELECT *
+            FROM camin_studentesc.cs_taxa
+            WHERE tip_taxa = $tip_datorie
+            AND tip_camera = $tip_camera
             AND tip_persoana = $tip_persoana
             ORDER BY data_val_max DESC
 		";  //psql($q_taxa);
@@ -712,10 +712,10 @@ function manage_utilitati($id_cazare, $id_locatar, $utilitati_old, $utilitati_ne
         foreach ($all_no as $value) {
 
             $q_e = "
-                SELECT * 
-                FROM camin_studentesc.cs_persoane_utilitati 
-                WHERE id_cazare = {$id_cazare} 
-                AND id_locatar = {$id_locatar} 
+                SELECT *
+                FROM camin_studentesc.cs_persoane_utilitati
+                WHERE id_cazare = {$id_cazare}
+                AND id_locatar = {$id_locatar}
                 AND id_utilitate = {$value}
             ";
             $r = $db->GetRow($q_e);
@@ -811,9 +811,9 @@ function numar_utilitati_cazare($id_locatar, $data_start, $type_of_status = null
 function get_utilitati_locatar($id_locatar, $data_start, $id_cazare = 0)
 {
     $q = "
-        SELECT 
-            id, 
-            id_utilitate 
+        SELECT
+            id,
+            id_utilitate
         FROM camin_studentesc.cs_persoane_utilitati
         WHERE 1
         AND	id_utilitate != 0
@@ -943,7 +943,7 @@ function get_cont_info($id_taxa)
     global $db;
 
     $q = "
-        SELECT cs_taxa.*, cs_conturi.* 
+        SELECT cs_taxa.*, cs_conturi.*
 		FROM camin_studentesc.cs_taxa
 		INNER JOIN camin_studentesc.cs_conturi ON cs_conturi.id_taxa = cs_taxa.id
 		WHERE cs_taxa.id = {$id_taxa}
@@ -958,7 +958,7 @@ function get_cont_info($id_taxa)
     return $res[0];
 }
 
-// 
+//
 
 function show_help($arr)
 {
@@ -974,34 +974,6 @@ function show_help($arr)
     echo $to_return;
 }
 
-/**
- * @param $raw_data
- *
- * @return bool
- */
-function zu($raw_data)
-{
-    global $db;
-
-    $SESSION2SAVE = [];
-    $SESSION2SAVE = $_SESSION;
-    $SESSION2SAVE['CACHE'] = null; // do not log cache from session
-
-    $to_insert['zu_time'] = date("Y-m-d H:i:s");
-    $to_insert['zu_session'] = serialize($SESSION2SAVE);
-    $to_insert['zu_globals'] = serialize($_SERVER); # instead of serialize($GLOBALS);
-
-    if (is_array($raw_data)) {
-        $to_insert['zu_infos'] = serialize($raw_data);
-    } else {
-        $to_insert['zu_infos'] = $raw_data;
-    }
-
-    // stop this way logging for the moment
-    $db->AutoExecute('cs_zu', $to_insert, 'INSERT');
-
-    return true;
-}
 
 
 /**
@@ -1072,31 +1044,7 @@ function getDimension($dim_id, $dim_table)
 //    }
 //}
 
-// clean filenames
-/**
- * @param        $string_filename
- * @param string $convert_case
- *
- * @return bool|mixed|string
- */
-//if (!function_exists('clean_filename2')) {
-//    function clean_filename2($string_filename, $convert_case = '')
-//    {
-//        $string_filename = trim($string_filename);
-//
-//        if (strlen($string_filename) > 4) {
-//            $to_return = preg_replace('/\\W+/', '_', $string_filename);
-//            $to_return = str_replace(' ', '_', $to_return);
-//            $to_return = str_replace('__', '_', $to_return);
-//            $to_return = strtolower($to_return);
-//
-//        } else {
-//            $to_return = false;
-//        }
-//
-//        return $to_return;
-//    }
-//}
+
 
 function getLaundryUnitPrice()
 {
@@ -1129,4 +1077,44 @@ function getPaymentMethodCondition($paymentMethod): string
             break;
     }
     return $paymentMethodCondition;
+}
+
+function array_group_by(array $records, callable $key_selector): array
+{
+    $result = [];
+    foreach ($records as $record) {
+        $key = $key_selector($record);
+        $result[$key][] = $record;
+    }
+    return $result;
+}
+
+/**
+ * @param      $options_array
+ * @param null $current_option
+ * @param null $default_value
+ *
+ * @return string
+ */
+function write_select($options_array, $current_option = null, $default_value = null): string
+{
+    // cvit July 10, 2007
+
+    $result = "\n";
+
+    // add default value if current option is not filled
+    if (($current_option == null || $current_option == 0 || $current_option == '') && $default_value != null) {
+        $current_option = $default_value;
+    }
+
+    if (is_array($options_array)) {
+        foreach ($options_array as $key => $option) {
+            ($current_option == $key) ? $status = 'SELECTED style="color:blue; background-color:#EDEEDE;"' : $status = '';
+            $result .= '<option value="' . $key . '" ' . $status . '>' . $option . '</option>' . "\n";
+        }
+    } else {
+        $result = 'no input array';
+    }
+
+    return $result;
 }
